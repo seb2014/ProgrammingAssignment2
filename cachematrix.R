@@ -7,6 +7,7 @@ makeCacheMatrix <- function(x = matrix()) {
     m <<- NULL
   }
   get <- function() x
+  #this inverses the matrix
   setInverse <- function(solve) m <<- solve(x)
   getInverse <- function() m
   list(set = set, get = get,
@@ -27,6 +28,7 @@ cacheSolve <- function(x, ...) {
   }
   data <- x$get()
   m <- solve(data, ...)
+  # this is going to call the setInverse function of makeCacheMatrix which put the inverse into m object that is cached. lexical scoping
   x$setInverse(m)
   m
 }
